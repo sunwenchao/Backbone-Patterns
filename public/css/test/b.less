@@ -1,0 +1,14 @@
+@import "common.less";
+
+.b-div {
+  margin-top: 20px;
+  background-color: @color;
+  width: 200px;
+  height: 40px;
+  .border-radius(4px);
+  .box-shadow(2px, 5px);
+  &:hover {
+    background-color: blue;
+  }
+  .mixin(light, #222);
+}

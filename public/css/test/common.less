@@ -1,0 +1,29 @@
+@color: #4D926F;
+@logoUrl: url( 'http://www.labi.com/image/labi-logo-136_26.png' );
+@var: `"hello".toUpperCase() + '!'`;
+
+.oh{
+    overflow: hidden;
+}
+
+.border-radius (@radius) {
+  border-radius: @radius;
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+}
+
+.box-shadow (@x: 0, @y: 0, @blur: 1px, @color: #000) {
+  box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  -webkit-box-shadow: @arguments;
+}
+
+.mixin (dark, @color) {
+  color: darken(@color, 10%);
+}
+.mixin (light, @color) {
+  color: lighten(@color, 10%);
+}
+.mixin (@_, @color) {
+  display: block;
+}

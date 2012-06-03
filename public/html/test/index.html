@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript">
+        var seaToDoList = [];
+        window.seajs = {};
+
+        seajs.use = function(){
+            pushSeaToDoList( 'use', arguments );
+        };
+        seajs.config = function(){
+            pushSeaToDoList( 'config', arguments );
+        };
+        window.define = function(){
+            pushSeaToDoList( 'define', arguments );
+        };
+
+        function pushSeaToDoList( cmd, oriArgs ){
+            var args = Array.prototype.slice.call( oriArgs, 0 );
+            seaToDoList.push( [ cmd ].concat( args ) );
+        }
+    </script>
+
+    <script type="text/javascript">
+        seajs.use( '/js/index', function(){
+            console.log('ok');
+        });
+    </script>
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css"/>
+    <link rel="stylesheet" href="../../css/bootstrap/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet/less" type="text/css" href="../../css/test/a.less">
+    <link rel="stylesheet/less" type="text/css" href="../../css/test/b.less">
+    <script src="../../js/base/less-1.2.2.js" type="text/javascript"></script>
+</head>
+<body>
+<p>Welcome boy!</p>
+<div class="a-div"></div>
+<div class="b-div">aabbcc</div>
+
+
+<script type="text/javascript" src="../../js/config.js"></script>
+<script type="text/javascript" async="true" src="../../js/base/sea-debug.js"></script>
+</body>
+</html>
