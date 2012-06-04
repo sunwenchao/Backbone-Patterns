@@ -28,7 +28,7 @@ module.exports = function(app) {
         var reqId = req.params.id;
 
         calService.delCal( reqId, function( err, replies ){
-            res.send( replies );
+            res.send( replies, 200 );
         });
     });
 

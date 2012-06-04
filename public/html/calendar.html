@@ -21,18 +21,26 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container" id="container">
 
+    </div>
+
+    <script type="text/x-handlebars-template" id="calendar_list_template">
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="javascript:;">日程展示</a></li>
+            <li><a href="javascript:;">日程添加</a></li>
+        </ul>
 
         <div id="calendar_view">
             <div class="hero-unit">
                 <h3>日程列表</h3>
                 <a class="btn" id="calendar_view_addbtn" href="javascript:;">添加测试数据</a>
-                <ul id="calendar">
+                <ul id="calendar_ul">
                 </ul>
             </div>
         </div>
-    </div>
+    </script>
 
 	<script type="text/x-handlebars-template" id="calendar_item_template">
         <div class="alert alert-block">

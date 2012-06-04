@@ -38,7 +38,9 @@ define(function(require, exports, module) {
     // 集合的视图
 	var CalendarCollectionView = Backbone.View.extend({
 
-		el: '#calendar_view',
+        id: 'calendar_list',
+
+        template: Handlebars.compile( $( '#calendar_list_template' ).html() ),
 
         events: {
             'click #calendar_view_addbtn': function(){
@@ -47,6 +49,10 @@ define(function(require, exports, module) {
         },
 
 		initialize: function() {
+
+            $( this.el ).html( this.template() );
+
+            $( '#container' ).html( this.$el );
 
 			_.bindAll( this, 'renderItem' );
 			this.collection.bind( 'add', this.renderItem );
@@ -57,7 +63,7 @@ define(function(require, exports, module) {
             var itemView = new CalendarView({
                 model : item
             });
-			this.$el.append( itemView.render().el );
+			this.$el.find( '#calendar_ul' ).append( itemView.render().el );
 		}
 	});
 	
