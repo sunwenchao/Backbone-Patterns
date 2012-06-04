@@ -5,31 +5,34 @@ define(function(require, exports, module) {
 
 	var Calendar = Backbone.Model.extend({
 
-        urlRoot: "/calendars",
+        urlRoot: '/calendars',
+
+        idAttribute: '_id',
 
 		initialize: function() {
 
 		},
-		
-		validate: function(attrs) {
-			if (!attrs.title) {
-				return "title must not be empty";
-			}
-		},
-		
-		parse: function(response) {
-			return response;
-		}
+
+        deleteCal: function(){
+            this.destroy();
+        }
 	});
 	
 	var CalendarCollection = Backbone.Collection.extend({
+
 		model: Calendar,
 		
 		url: "/calendars",
 		
 		initialize: function() {
-			this.fetch();
-		}
+			this.fetch({
+                add: true
+            });
+		},
+
+        addCal: function(){
+            this.create({});
+        }
 	});
 	
 	exports.Calendar = Calendar;

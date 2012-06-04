@@ -1,3 +1,5 @@
+var mongoose = require('mongoose');
+
 module.exports = function(app, express) {
 
     app.configure(function() {
@@ -28,5 +30,11 @@ module.exports = function(app, express) {
         app.use(express.errorHandler());
     });
 
-
+    //connect database
+    mongoose.connect( 'mongodb://localhost/labitest' , function (err) {
+        if (err) {
+            console.error('connect to database: %s error: ', 'labitest', err.message);
+            process.exit(1);
+        }
+    });
 };

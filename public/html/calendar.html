@@ -5,6 +5,7 @@
     <title>蜡笔同步 - 日历</title>
     <link type="image/x-icon" href="/image/labi.ico" rel="icon"/>
     <link rel="stylesheet" href="/combo?type=css&files=reset.css,bootstrap/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet/less" href="/css/less/calendar.less" type="text/css"/>
     <script src="../js/base/less-1.2.2.js" type="text/javascript"></script>
 </head>
 
@@ -21,18 +22,24 @@
         </div>
     </div>
     <div class="container">
-        <div class="hero-unit">
-            <h3>日程列表</h3>
-            <ul id="calendar">
 
-            </ul>
+
+        <div id="calendar_view">
+            <div class="hero-unit">
+                <h3>日程列表</h3>
+                <a class="btn" id="calendar_view_addbtn" href="javascript:;">添加测试数据</a>
+                <ul id="calendar">
+                </ul>
+            </div>
         </div>
     </div>
 
-	<script type="text/x-handlebars-template" id="calendar_template">
-		{{#each calendar}}
-			<li>id:{{id}}, title:{{title}}, jid:{{jid}}</li>
-		{{/each}}
+	<script type="text/x-handlebars-template" id="calendar_item_template">
+        <div class="alert alert-block">
+            <a class="close" href="javascript:;">×</a>
+            <h3 class="alert-heading">{{title}}</h3>
+            {{content}}
+        </div>
 	</script>
 
     <script type="text/javascript" src="/combo?type=js&files=base/jquery-1.7.1.min.js,

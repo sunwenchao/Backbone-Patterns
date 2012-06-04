@@ -2,56 +2,71 @@
  * 日历的view
  */
 define(function(require, exports, module) {
-	var model = require("./model");
-	var template = Handlebars.compile( $("#calendar_template").html() );
-	
+
+	var CalendarCollection = require( './model' ).CalendarCollection;
+
+    // 单条的视图
 	var CalendarView = Backbone.View.extend({
-		el: "#calendar",
+
+		tagName: 'li',
+        className: 'calendar-li',
+
+        template: Handlebars.compile( $( '#calendar_item_template' ).html() ),
+
+        events: {
+            'click .close': function(){
+                this.model.deleteCal();
+            }
+        },
 		
 		initialize: function() {
-			_.bindAll(this, "render", "addModel");
-			this.model.bind("change", this.render);
+			_.bindAll( this, 'render', 'removeSelf' );
+			this.model.bind( 'change', this.render );
+            this.model.bind( 'destroy', this.removeSelf );
 		},
 		
 		render: function() {
-			$(this.el).find("#calendar_view").text(JSON.stringify(this.model.toJSON()));
+			$( this.el ).html( this.template( this.model.toJSON() ) );
 			return this;
-		}
+		},
+
+        removeSelf: function(){
+            $( this.el ).remove();
+        }
 	});
-	
+
+    // 集合的视图
 	var CalendarCollectionView = Backbone.View.extend({
-		el: "#calendar",
-		
+
+		el: '#calendar_view',
+
+        events: {
+            'click #calendar_view_addbtn': function(){
+                this.collection.addCal();
+            }
+        },
+
 		initialize: function() {
-			_.bindAll(this, "render");
-			this.collection.bind("reset", this.render);
-			this.collection.bind("add", this.render);
-		},
-		
-		render: function() {
-			this.$el.find("#calendar_view").html(template({calendar: this.collection.toJSON()}));
-		},
-		
-		events: {
-			"click input[type=button]": "addModel"
-		},
-		
-		addModel: function() {
-			var title = this.$el.find("input[name=title]").val()
 
-			var aCalendar = new model.Calendar({"title": title});
+			_.bindAll( this, 'renderItem' );
+			this.collection.bind( 'add', this.renderItem );
+		},
 
-			aCalendar.on("error", function(model, error) {
-				console.log(model.get("title") + error);
-			});
+        renderItem: function( item ) {
 
-			aCalendar.save();
+            var itemView = new CalendarView({
+                model : item
+            });
+			this.$el.append( itemView.render().el );
 		}
 	});
 	
 	exports.init = function(){
+
+        window.globalCalendarCollection = new CalendarCollection();
+
         new CalendarCollectionView({
-            collection: new model.CalendarCollection()
+            collection: globalCalendarCollection
         });
     };
 });
