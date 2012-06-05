@@ -4,17 +4,17 @@
 
 ## 前端技术应用
 
-    - backbone
-    * underscore
-    * jquery
-    * LESS
-    * seajs
-    * handlebars
-    * bootstrap
+  * backbone
+  * underscore
+  * jquery
+  * LESS
+  * seajs
+  * handlebars
+  * bootstrap
 
 ## 服务器端技术应用
 
-    * node.js
-    * npm -  express, jade, mongoose, spm
-    * mongoDB
+  * node.js
+  * npm -  express, jade, mongoose, spm
+  * mongoDB
 
