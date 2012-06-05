@@ -4,7 +4,7 @@ module.exports = function(app) {
 
     app.get('/calendars', function(req, res) {
 
-        calService.getCals( function( err, replies ){
+        calService.getCals( function( err, replies ) {
             res.send( replies );
         });
     });
@@ -28,7 +28,8 @@ module.exports = function(app) {
         var reqId = req.params.id;
 
         calService.delCal( reqId, function( err, replies ){
-            res.send( replies, 200 );
+            var hCode = err ? 500 : 200;
+            res.send( replies, hCode );
         });
     });
 

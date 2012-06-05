@@ -1,40 +1,40 @@
 /**
  * 日历的model
  */
-define(function(require, exports, module) {
+define(function (require, exports, module) {
 
-	var Calendar = Backbone.Model.extend({
+    var Calendar = Backbone.Model.extend({
 
-        urlRoot: '/calendars',
+        urlRoot:'/calendars',
 
-        idAttribute: '_id',
+        idAttribute:'_id',
 
-		initialize: function() {
+        initialize:function () {
 
-		},
+        },
 
-        deleteCal: function(){
+        deleteCal:function () {
             this.destroy();
         }
-	});
-	
-	var CalendarCollection = Backbone.Collection.extend({
+    });
 
-		model: Calendar,
-		
-		url: "/calendars",
-		
-		initialize: function() {
-			this.fetch({
-                add: true
+    var CalendarCollection = Backbone.Collection.extend({
+
+        model:Calendar,
+
+        url:"/calendars",
+
+        initialize:function () {
+            this.fetch({
+                add:true
             });
-		},
+        },
 
-        addCal: function(){
+        addCal:function () {
             this.create({});
         }
-	});
-	
-	exports.Calendar = Calendar;
-	exports.CalendarCollection = CalendarCollection;
+    });
+
+    exports.Calendar = Calendar;
+    exports.CalendarCollection = CalendarCollection;
 });
