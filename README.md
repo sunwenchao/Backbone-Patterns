@@ -4,7 +4,7 @@
 
 ## 前端技术应用
 
-    * backbone
+    - backbone
     * underscore
     * jquery
     * LESS
