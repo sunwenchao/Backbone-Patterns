@@ -5,33 +5,33 @@ define(function (require, exports, module) {
 
     var Calendar = Backbone.Model.extend({
 
-        urlRoot:'/calendars',
+        urlRoot : '/calendars',
 
-        idAttribute:'_id',
+        idAttribute : '_id',
 
-        initialize:function () {
+        initialize : function() {
 
         },
 
-        deleteCal:function () {
+        deleteCal : function() {
             this.destroy();
         }
     });
 
     var CalendarCollection = Backbone.Collection.extend({
 
-        model:Calendar,
+        model : Calendar,
 
-        url:"/calendars",
-
-        initialize:function () {
-            this.fetch({
-                add:true
-            });
+        url : function() {
+            return '/calendars?ts=' + Number( new Date() );
         },
 
-        addCal:function () {
-            this.create({});
+        initialize : function() {
+            this.fetch();
+        },
+
+        addCal : function() {
+            this.create( {} );
         }
     });
 

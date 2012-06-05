@@ -7,10 +7,6 @@ module.exports = function(app) {
         res.sendfile( './public/html/home.html' );
     });
 
-    app.get('/cal', function(req, res) {
-        res.sendfile( './public/html/calendar.html' );
-    });
-
     require( '../calendars/action.js' )( app );
 
     // 处理需要合并压缩的静态资源请求

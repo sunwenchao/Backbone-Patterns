@@ -4,9 +4,22 @@ module.exports = function(app) {
 
     app.get('/calendars', function(req, res) {
 
-        calService.getCals( function( err, replies ) {
-            res.send( replies );
-        });
+        // 判断请求类型
+        if( req.xhr ){
+            calService.getCals( function( err, replies ) {
+                res.send( replies );
+            });
+
+        }else{
+            res.sendfile( './public/html/calendar.html' );
+        }
+    });
+
+    app.get(/\/calendars\/[\w]*/, function(req, res) {
+
+        if( !req.xhr ){
+            res.sendfile( './public/html/calendar.html' );
+        }
     });
 
     app.post('/calendars', function(req, res) {

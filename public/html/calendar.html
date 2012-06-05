@@ -6,7 +6,7 @@
     <link type="image/x-icon" href="/image/labi.ico" rel="icon"/>
     <link rel="stylesheet" href="/combo?type=css&files=reset.css,bootstrap/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet/less" href="/css/less/calendar.less" type="text/css"/>
-    <script src="../js/base/less-1.2.2.js" type="text/javascript"></script>
+    <script src="../js/base/less-1.2.2.min.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -15,8 +15,8 @@
             <div class="container">
                 <ul class="nav">
                     <li><a href="/">主页</a></li>
-                    <li><a href="/contact">联系人</a></li>
-                    <li class="active"><a href="/cal">日历</a></li>
+                    <li><a href="/contact/">联系人</a></li>
+                    <li class="active"><a href="/calendars/">日历</a></li>
                 </ul>
             </div>
         </div>
@@ -28,8 +28,8 @@
     <script type="text/x-handlebars-template" id="calendar_list_template">
 
         <ul class="nav nav-tabs">
-            <li class="active"><a href="javascript:;">日程展示</a></li>
-            <li><a href="javascript:;">日程添加</a></li>
+            <li class="active"><a href="javascript:;" id="to_list_link">日程展示</a></li>
+            <li><a href="javascript:;" id="to_new_link">日程添加</a></li>
         </ul>
 
         <div id="calendar_view">
@@ -50,12 +50,49 @@
         </div>
 	</script>
 
+    <script type="text/x-handlebars-template" id="calendar_new_template">
+
+        <ul class="nav nav-tabs">
+            <li><a href="javascript:;" id="to_list_link">日程展示</a></li>
+            <li class="active"><a href="javascript:;" id="to_new_link">日程添加</a></li>
+        </ul>
+
+        <div id="calendar_new_view">
+            <div class="hero-unit">
+                <h3>日程添加</h3>
+                <a class="btn" id="calendar_view_addbtn" href="javascript:;">添加测试数据</a>
+                <div>
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <div class="control-group">
+                                <label class="control-label" for="input01">标题</label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge" id="input01">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="textarea">内容</label>
+                                <div class="controls">
+                                    <textarea class="input-xlarge" id="textarea" rows="8"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-actions clear-bg">
+                                <button type="submit" class="btn btn-primary">新建</button>
+                                <button class="btn">取消</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </script>
+
     <script type="text/javascript" src="/combo?type=js&files=base/jquery-1.7.1.min.js,
 base/underscore-min.js,base/backbone.js,base/handlebars-1.0.0.beta.6.js,base/sea-debug.js,config.js"></script>
 
 	<script type="text/javascript">
-		seajs.use( "/js/calendar/view", function( calView ){
-            calView.init();
+		seajs.use( "/js/calendar/router", function( calRouter ){
+            calRouter.init();
         });
 	</script>
 </body>
