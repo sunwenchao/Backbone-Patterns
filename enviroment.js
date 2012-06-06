@@ -37,4 +37,8 @@ module.exports = function(app, express) {
             process.exit(1);
         }
     });
+
+    // project 'S' infomation
+    global.sBasePath = __dirname;
+    global.sDebug = true;
 };
