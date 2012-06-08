@@ -4,7 +4,12 @@ module.exports = function(app) {
 
     app.get(['/','/index'], function(req, res) {
 //        res.render( 'test', { pageTitle:'fuck', youAreUsingJade:true } );
-        res.sendfile( './public/html/home.html' );
+//        res.redirect( '/calendars' );
+        res.sendfile( './public/html/home.html' ); // forward
+    });
+
+    app.get('/download', function(req, res) {
+        res.sendfile( './public/html/download.html' );
     });
 
     require( '../calendars/action.js' )( app );

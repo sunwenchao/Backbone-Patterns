@@ -11,14 +11,14 @@ module.exports = function(app) {
             });
 
         }else{
-            res.sendfile( './public/html/calendar.html' );
+            res.sendfile( './public/html/home.html' );
         }
     });
 
     app.get(/\/calendars\/[\w]*/, function(req, res) {
 
         if( !req.xhr ){
-            res.sendfile( './public/html/calendar.html' );
+            res.sendfile( './public/html/home.html' );
         }
     });
 

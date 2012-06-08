@@ -3,42 +3,35 @@
  */
 define(function (require, exports, module) {
 
-    var CalendarCollection = require('./model').CalendarCollection;
+    var routerUtil = require( '../util/router-util' );
 
-    var calendarViews = require('./view');
+    var CalendarCollection = require( './model' ).CalendarCollection;
+
+    var calendarViews = require( './view' );
 
     var globalCalendarCollection = new CalendarCollection();
 
-    var CalendarRouter = Backbone.Router.extend({
+    // 日历模块的路由列表
+    var calendarRouterHandler = routerUtil.createRouterHandlers({
 
-        routes : {
-            'new' : 'showNewView',
-            '' : 'showListView'
-        },
-
-        showNewView : function() {
+        '/new' : function() {
             new calendarViews.CalendarNewView({
                 collection : globalCalendarCollection
             });
         },
 
-        showListView : function() {
+        '/' : function() {
             new calendarViews.CalendarCollectionView({
                 collection : globalCalendarCollection
             });
         }
-
     });
 
-    window.calendarRouter = new CalendarRouter();
+    // 对外执行路由处理的方法
+    exports.routeURL = function( path ){
+        var realPath = path ? path : '/';
 
-    exports.init = function(){
-
-        $(function(){
-            var initRoute = Backbone.history.start( { pushState : true, root : "/calendars/" } );
-            console.log( '初始化匹配:', initRoute );
-        });
+        return routerUtil.handleFragment( realPath, calendarRouterHandler );
     };
 
-    exports.globalCalendarCollection = globalCalendarCollection;
 });
