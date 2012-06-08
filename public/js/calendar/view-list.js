@@ -3,6 +3,8 @@
  */
 define(function(require, exports, module) {
 
+    var calendarCommon = require( './view-common' );
+
     // 单条日程的视图
     var CalendarView = Backbone.View.extend({
 
@@ -34,7 +36,7 @@ define(function(require, exports, module) {
     });
 
     // 日程集合的视图
-    var CalendarCollectionView = Backbone.View.extend({
+    var CalendarListView = Backbone.View.extend({
 
         id : 'calendar_list',
 
@@ -43,12 +45,6 @@ define(function(require, exports, module) {
         events : {
             'click #calendar_view_addbtn' : function () {
                 this.collection.addCal();
-            },
-            'click #to_list_link' : function() {
-                homeRouter.navigate( 'calendars', { trigger : true } );
-            },
-            'click #to_new_link' : function() {
-                homeRouter.navigate( 'calendars/new', { trigger : true } );
             }
         },
 
@@ -72,9 +68,14 @@ define(function(require, exports, module) {
 
         initRender : function() {
 
+            var navView = new calendarCommon.CalendarNavwView(),
+                containerDom = $( '#container' );
+
+            containerDom.html( navView.render( 'listActive' ) );
+
             $( this.el ).html( this.template() );
 
-            $( '#container' ).html( this.$el );
+            containerDom.append( this.$el );
 
             this.renderAll();
         },
@@ -88,6 +89,6 @@ define(function(require, exports, module) {
         }
     });
 
-    exports.CalendarCollectionView = CalendarCollectionView;
+    exports.CalendarListView = CalendarListView;
 
 });

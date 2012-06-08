@@ -37,4 +37,5 @@ define(function (require, exports, module) {
 
     exports.Calendar = Calendar;
     exports.CalendarCollection = CalendarCollection;
+
 });

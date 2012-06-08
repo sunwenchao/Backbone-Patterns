@@ -26,10 +26,10 @@
 
     </div>
 
-    <script type="text/x-handlebars-template" id="calendar_list_template">
+    <script type="text/x-handlebars-template" id="calendar_nav_template">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="javascript:;" id="to_list_link">日程展示</a></li>
-            <li><a href="javascript:;" id="to_new_link">日程添加</a></li>
+            <li {{#if listActive}}class="active"{{/if}}><a href="javascript:;" id="to_list_link">日程展示</a></li>
+            <li {{#if newActive}}class="active"{{/if}}><a href="javascript:;" id="to_new_link">日程添加</a></li>
         </ul>
     </script>
 
@@ -87,7 +87,7 @@
 base/underscore-min.js,base/backbone.js,base/handlebars-1.0.0.beta.6.js,base/sea-debug.js,config.js"></script>
 
 	<script type="text/javascript">
-		seajs.use( "/js/home/router", function( homeRouter ){
+	    seajs.use( "/js/home/router", function( homeRouter ){
             homeRouter.init();
         });
 	</script>

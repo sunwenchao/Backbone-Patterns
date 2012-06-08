@@ -21,7 +21,7 @@ define(function (require, exports, module) {
         },
 
         '/' : function() {
-            new calendarViews.CalendarCollectionView({
+            new calendarViews.CalendarListView({
                 collection : globalCalendarCollection
             });
         }

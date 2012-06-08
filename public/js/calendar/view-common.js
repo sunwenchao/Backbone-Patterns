@@ -1,0 +1,42 @@
+/**
+ * 日程模块的通用view
+ */
+define(function(require, exports, module) {
+
+    var navStatus = {
+        'listActive' : '',
+        'newActive' : ''
+    };
+
+    // 日程导航的视图
+    var CalendarNavwView = Backbone.View.extend({
+
+        id : 'calendar_nav',
+
+        template : Handlebars.compile( $( '#calendar_nav_template' ).html() ),
+
+        events : {
+            'click #to_list_link' : function() {
+                homeRouter.navigate( 'calendars', { trigger : true } );
+            },
+            'click #to_new_link' : function() {
+                homeRouter.navigate( 'calendars/new', { trigger : true } );
+            }
+        },
+
+        initialize : function() {
+            _.bindAll( this, 'render' );
+        },
+
+        render : function( activeMod ){
+            var obj = {};
+            obj[ activeMod ] = true;
+
+            $( this.el ).html( this.template( obj ) );
+            return this.$el;
+        }
+    });
+
+    exports.CalendarNavwView = CalendarNavwView;
+    exports.navStatus = navStatus;
+});
