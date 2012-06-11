@@ -36,7 +36,7 @@ define(function (require, exports, module) {
         // be sure to only call start() after the DOM is ready.
         $(function(){
 
-            var initRoute = Backbone.history.start( { pushState : true, root : "/" } );
+            Backbone.history.start( { pushState : true, root : "/" } );
         });
     };
 

@@ -5,24 +5,35 @@ define(function (require, exports, module) {
 
     var routerUtil = require( '../util/router-util' );
 
-    var CalendarCollection = require( './model' ).CalendarCollection;
-
     var calendarViews = require( './view' );
+
+    var calendarModels = require( './model' );
+
+    var CalendarModel = calendarModels.Calendar;
+
+    var CalendarCollection = calendarModels.CalendarCollection;
 
     var globalCalendarCollection = new CalendarCollection();
 
     // 日历模块的路由列表
     var calendarRouterHandler = routerUtil.createRouterHandlers({
 
-        '/new' : function() {
-            new calendarViews.CalendarNewView({
+        '/' : function() {
+            new calendarViews.CalendarListView({
                 collection : globalCalendarCollection
             });
         },
 
-        '/' : function() {
-            new calendarViews.CalendarListView({
-                collection : globalCalendarCollection
+        '/new' : function() {
+            new calendarViews.CalendarNewView({
+                collection : globalCalendarCollection,
+                model : new CalendarModel()
+            });
+        },
+
+        '/item/:guid' : function( guid ) {
+            new calendarViews.CalendarNewView({
+                reqId : guid
             });
         }
     });

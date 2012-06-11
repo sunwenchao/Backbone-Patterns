@@ -37,14 +37,13 @@
         <div id="calendar_view">
             <div class="hero-unit">
                 <h3>日程列表</h3>
-                <a class="btn" id="calendar_view_addbtn" href="javascript:;">添加测试数据</a>
                 <ul id="calendar_ul">
                 </ul>
             </div>
         </div>
     </script>
 
-	<script type="text/x-handlebars-template" id="calendar_item_template">
+	<script type="text/x-handlebars-template" id="calendar_one_template">
         <div class="alert alert-block">
             <a class="close" href="javascript:;">×</a>
             <h3 class="alert-heading">{{title}}</h3>
@@ -56,25 +55,54 @@
         <div id="calendar_new_view">
             <div class="hero-unit">
                 <h3>日程添加</h3>
-                <a class="btn" id="calendar_view_addbtn" href="javascript:;">添加测试数据</a>
                 <div>
                     <form class="form-horizontal">
                         <fieldset>
-                            <div class="control-group">
-                                <label class="control-label" for="input01">标题</label>
+                            <div class="control-group" id="new_title_con">
+                                <label class="control-label" for="new_title">标题</label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge" id="input01">
+                                    <input type="text" class="input-xlarge" id="new_title">
                                 </div>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label" for="textarea">内容</label>
+                            <div class="control-group" id="new_content_con">
+                                <label class="control-label" for="new_content">内容</label>
                                 <div class="controls">
-                                    <textarea class="input-xlarge" id="textarea" rows="8"></textarea>
+                                    <textarea class="input-xlarge" id="new_content" rows="8"></textarea>
                                 </div>
                             </div>
                             <div class="form-actions clear-bg">
-                                <button type="submit" class="btn btn-primary">新建</button>
-                                <button class="btn">取消</button>
+                                <a id="new_save" class="btn btn-primary">新建</a>
+                                <a id="new_cancel" class="btn">取消</a>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="calendar_item_template">
+        <div id="calendar_item_view">
+            <div class="hero-unit">
+                <h3>日程编辑</h3>
+                <div>
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <div class="control-group" id="item_title_con">
+                                <label class="control-label" for="item_title">标题</label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge" id="item_title">
+                                </div>
+                            </div>
+                            <div class="control-group" id="item_content_con">
+                                <label class="control-label" for="item_content">内容</label>
+                                <div class="controls">
+                                    <textarea class="input-xlarge" id="item_content" rows="8"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-actions clear-bg">
+                                <a id="item_save" class="btn btn-primary">保存</a>
+                                <a id="item_cancel" class="btn">取消</a>
                             </div>
                         </fieldset>
                     </form>
@@ -84,12 +112,12 @@
     </script>
 
     <script type="text/javascript" src="/combo?type=js&files=base/jquery-1.7.1.min.js,
-base/underscore-min.js,base/backbone.js,base/handlebars-1.0.0.beta.6.js,base/sea-debug.js,config.js"></script>
+base/underscore.js,base/backbone.js,base/handlebars-1.0.0.beta.6.js,base/sea-debug.js,config.js"></script>
 
-	<script type="text/javascript">
-	    seajs.use( "/js/home/router", function( homeRouter ){
+    <script type="text/javascript">
+        seajs.use( "/js/home/router", function( homeRouter ){
             homeRouter.init();
         });
-	</script>
+    </script>
 </body>
 </html>

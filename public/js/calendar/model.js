@@ -15,6 +15,19 @@ define(function (require, exports, module) {
 
         deleteCal : function() {
             this.destroy();
+        },
+
+        validate : function( attrs ) {
+            if( !this.validateTitle( attrs.title ) ) return 'title';
+            if( !this.validateContent( attrs.content ) ) return 'content';
+        },
+
+        validateTitle : function( title ) {
+            return title === '' ? false : true;
+        },
+
+        validateContent : function( content ) {
+            return content === '' ? false : true;
         }
     });
 
@@ -30,8 +43,14 @@ define(function (require, exports, module) {
             this.fetch();
         },
 
-        addCal : function() {
-            this.create( {} );
+        addCal : function( oriObj, opts ) {
+            opts.wait = true;
+
+            return this.create( oriObj, opts );
+        },
+
+        comparator : function( calendar ) {
+            return -calendar.get( 'updatetime' );
         }
     });
 

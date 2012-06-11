@@ -285,11 +285,9 @@
       var now = this.attributes;
       var escaped = this._escapedAttributes;
       var prev = this._previousAttributes || {};
-
       // For each `set` attribute...
       for (attr in attrs) {
         val = attrs[attr];
-
         // If the new and current value differ, record the change.
         if (!_.isEqual(now[attr], val) || (options.unset && _.has(now, attr))) {
           delete escaped[attr];

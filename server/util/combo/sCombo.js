@@ -26,7 +26,7 @@ var sCombo = (function( undefined ) {
                 oriFiles[ i ] = global.sBasePath + '/public/' + qType + '/' + oriFiles[ i ];
             }
 
-            if( global.sDebug ){
+            if( global.sDebug && exists ){
                 self._checkExpire( exists )
             }else{
                 self._combo( exists );

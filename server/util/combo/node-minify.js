@@ -51,7 +51,7 @@ var minify = (function(undefined) {
 			switch (this.type) {
 				case 'yuijs':
 					command = 'java -jar -Xss2048k "' + __dirname + '/yuicompressor-2.4.7.jar" "' +
-                        this.fileIn + '" -o "' + this.fileOut + '" --type js ' + this.options.join(' ');
+                        this.fileIn + '" -o "' + this.fileOut + '" --type js --nomunge ' + this.options.join(' ');
 					break;
 
                 case 'yuicss':

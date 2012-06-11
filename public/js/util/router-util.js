@@ -30,14 +30,31 @@ define(function (require, exports, module) {
         return handlerList;
     };
 
-    // 处理createRouterHandlers产生的数组，根据传入的url片段匹配，执行回调
+    // 处理createRouterHandlers产生的数组 根据传入的url片段匹配 执行回调
+    // 处理了 '?' 后参数 构造query对象 传递给处理方法
     var handleFragment = function( realPath, handlerList ) {
 
+        var pathArr = realPath.split( '?' ),
+            noQueryPath = pathArr[ 0 ],
+            queryStr = pathArr.length === 1 ? false : pathArr[ 1 ];
+
+        if( queryStr ){
+            var queryObj = {},
+                queryArr = queryStr.split( '&' );
+
+            _( queryArr ).each( function( str ) {
+                var qArr = str.split( '=' );
+                queryObj[ qArr[ 0 ] ] = qArr[ 1 ];
+            });
+        }
+
         _.any( handlerList, function( handler ) {
-            var routeResult = handler.reg.exec( realPath );
+            var routeResult = handler.reg.exec( noQueryPath );
 
             if ( routeResult ) {
                 var thisArgs = routeResult.slice( 1 );
+                if( queryObj ) thisArgs.push( queryObj );
+
                 handler.callback.apply( this, thisArgs );
                 return true;
             }

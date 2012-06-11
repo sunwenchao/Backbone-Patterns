@@ -24,14 +24,12 @@ module.exports = function(app) {
 
     app.post('/calendars', function(req, res) {
 
-        var testObj = {
-            title : '我是个测试标题' + Date.now(),
-            content : '我是个测试内容我是个测试内容我是个测试内容我是个测试内容我是个测试内容我是个测试内容' +
-                '我是个测试内容我是个测试内容我是个测试内容我是个测试内容我是个测试内容我是个测试内容',
-            destjid : 'sunwenchao@gozap.com'
-        };
+        var reqItem = req.body;
 
-        calService.addCal( testObj, function( err, replies ){
+        reqItem.destjid = 'sunwenchao@gozap.com';
+        reqItem.updatetime = new Date().getTime();
+
+        calService.addCal( reqItem, function( err, replies ){
             res.send( replies );
         });
     });

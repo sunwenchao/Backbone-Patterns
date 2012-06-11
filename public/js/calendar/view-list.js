@@ -11,7 +11,7 @@ define(function(require, exports, module) {
         tagName : 'li',
         className : 'calendar-li',
 
-        template : Handlebars.compile( $( '#calendar_item_template' ).html() ),
+        template : Handlebars.compile( $( '#calendar_one_template' ).html() ),
 
         events : {
             'click .close' : function() {

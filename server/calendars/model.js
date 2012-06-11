@@ -15,7 +15,7 @@ var Calendar = new Schema({
     starttime: { type: Date, default: Date.now },
 
     createtime: { type: Date, default: Date.now },
-    updatetime: { type: Date, default: Date.now }
+    updatetime: { type: Number, default: Date.now }
 });
 
 mongoose.model('Calendar', Calendar);
