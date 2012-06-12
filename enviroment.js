@@ -15,7 +15,7 @@ module.exports = function(app, express) {
         app.use(express.static(__dirname + '/public'));
 
         app.use(app.router);
-    });
+     });
 
     //development configuration
     app.configure('development', function() {

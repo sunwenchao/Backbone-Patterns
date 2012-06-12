@@ -3,6 +3,8 @@
  */
 define(function (require, exports, module) {
 
+    var globalCalendarCollection = false;
+
     var Calendar = Backbone.Model.extend({
 
         urlRoot : '/calendars',
@@ -57,4 +59,21 @@ define(function (require, exports, module) {
     exports.Calendar = Calendar;
     exports.CalendarCollection = CalendarCollection;
 
+    exports.getCalendarCollection = function() {
+        // 单例获取日历
+        if( !globalCalendarCollection ) {
+            globalCalendarCollection = new CalendarCollection();
+        }
+        return globalCalendarCollection;
+    };
+
+    exports.getCalendarById = function( id ) {
+        // 优先查找 collection 中的数据
+        if( globalCalendarCollection && globalCalendarCollection.get( id ) ) {
+            return globalCalendarCollection.get( id );
+
+        }else {
+            return new Calendar( { id : id } );
+        }
+    };
 });

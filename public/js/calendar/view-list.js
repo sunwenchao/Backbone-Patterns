@@ -16,6 +16,10 @@ define(function(require, exports, module) {
         events : {
             'click .close' : function() {
                 this.model.deleteCal();
+            },
+
+            'dblclick' : function() {
+                homeRouter.navigate( 'calendars/item/' + this.model.get( '_id' ), { trigger : true } );
             }
         },
 
@@ -61,6 +65,8 @@ define(function(require, exports, module) {
         renderAll : function() {
             var self = this;
 
+            this.collection.sort( { silent : true } ); // 强制排序
+
             _( this.collection.models ).each( function( item ) {
                 self.renderItem( item );
             });
@@ -68,7 +74,7 @@ define(function(require, exports, module) {
 
         initRender : function() {
 
-            var navView = new calendarCommon.CalendarNavwView(),
+            var navView = new calendarCommon.CalendarNavView(),
                 containerDom = $( '#container' );
 
             containerDom.html( navView.render( 'listActive' ) );

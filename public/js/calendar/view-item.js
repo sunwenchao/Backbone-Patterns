@@ -53,7 +53,7 @@ define(function(require, exports, module) {
 
         initNewView : function() {
 
-            var navView = new calendarCommon.CalendarNavwView(),
+            var navView = new calendarCommon.CalendarNavView(),
                 containerDom = $( '#container' );
 
             containerDom.html( navView.render( 'newActive' ) );
@@ -78,9 +78,6 @@ define(function(require, exports, module) {
     });
 
 
-
-
-
     // 单个日程的视图
     var CalendarItemView = Backbone.View.extend({
 
@@ -89,21 +86,52 @@ define(function(require, exports, module) {
         template : Handlebars.compile( $( '#calendar_item_template' ).html() ),
 
         events : {
-            'click #calendar_view_addbtn' : function() {
-                this.collection.addCal();
+            'click #item_save' : function() {
+                var result = this.model.set({
+                    title : $( '#item_title' ).val(),
+                    content : $( '#item_content' ).val()
+                });
+
+                if( result ) this.model.save();
+            },
+
+            'click #item_cancel' : function() {
+                history.back();
             }
         },
 
         initialize : function() {
 
-            var navView = new calendarCommon.CalendarNavwView(),
+            _.bindAll( this, 'render', 'syncComplete' );
+            this.model.bind( 'change', this.render );
+            this.model.bind( 'sync', this.syncComplete );
+
+            this.initNewView();
+
+            if( this.model.isNew() ) {
+                this.model.id = this.model.get( 'id' );
+                this.model.fetch();
+            }
+        },
+
+        initNewView : function() {
+
+            var navView = new calendarCommon.CalendarNavView(),
                 containerDom = $( '#container' );
 
             containerDom.html( navView.render( 'noneActive' ) );
 
-            $( this.el ).html( this.template() );
+            containerDom.append( this.render() );
+        },
 
-            containerDom.append( this.$el );
+        render : function() {
+            return $( this.el ).html( this.template( this.model.toJSON() ) );
+        },
+
+        syncComplete : function() {
+            _.defer( function() {
+                homeRouter.navigate( 'calendars', { trigger : true } );
+            });
         }
     });
 

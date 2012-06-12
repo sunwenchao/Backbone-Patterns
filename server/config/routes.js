@@ -19,4 +19,10 @@ module.exports = function(app) {
         new SCombo( req, res ).go();
     });
 
+    app.get( '/*', function( req, res ){
+        res.render( '404', {
+            status : 404,
+            title : '404 - 文件未找到'
+        });
+    });
 };

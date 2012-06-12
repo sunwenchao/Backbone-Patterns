@@ -8,10 +8,31 @@ exports.getCals = function( callBack ){
     });
 };
 
+exports.getCalById = function( reqId, callBack ){
+
+    CalendarModel.findById( reqId, function( err, replies ){
+        return callBack( err, replies );
+    });
+};
+
 exports.delCal = function( reqId, callBack ){
 
     CalendarModel.remove( { _id : reqId }, function( err, replies ){
         return callBack( err, replies );
+    });
+};
+
+exports.editCal = function( reqId, reqObj, callBack ){
+
+//    CalendarModel.update( { _id : reqId }, reqObj, { multi: false }, function( err, replies ) {
+//        console.log(err, replies);
+//    });
+    CalendarModel.findOne( { _id : reqId }, function( err, calModel ){
+        _.extend( calModel, reqObj );
+
+        calModel.save(function( err, replies ){
+            callBack( err, replies );
+        });
     });
 };
 

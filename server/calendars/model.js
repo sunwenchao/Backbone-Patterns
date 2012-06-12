@@ -1,10 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var ObjectId = Schema.ObjectId;
 
 var Calendar = new Schema({
-
-    guid: { type: ObjectId },
 
     destjid: { type: String },
 

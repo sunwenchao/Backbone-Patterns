@@ -11,29 +11,25 @@ define(function (require, exports, module) {
 
     var CalendarModel = calendarModels.Calendar;
 
-    var CalendarCollection = calendarModels.CalendarCollection;
-
-    var globalCalendarCollection = new CalendarCollection();
-
     // 日历模块的路由列表
     var calendarRouterHandler = routerUtil.createRouterHandlers({
 
         '/' : function() {
             new calendarViews.CalendarListView({
-                collection : globalCalendarCollection
+                collection : calendarModels.getCalendarCollection()
             });
         },
 
         '/new' : function() {
             new calendarViews.CalendarNewView({
-                collection : globalCalendarCollection,
+                collection : calendarModels.getCalendarCollection(),
                 model : new CalendarModel()
             });
         },
 
-        '/item/:guid' : function( guid ) {
-            new calendarViews.CalendarNewView({
-                reqId : guid
+        '/item/:id' : function( id ) {
+            new calendarViews.CalendarItemView({
+                model : calendarModels.getCalendarById( id )
             });
         }
     });

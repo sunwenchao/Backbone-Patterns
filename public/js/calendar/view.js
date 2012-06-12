@@ -8,4 +8,5 @@ define(function(require, exports, module) {
 
     exports.CalendarListView = view_list.CalendarListView;
     exports.CalendarNewView = view_item.CalendarNewView;
+    exports.CalendarItemView = view_item.CalendarItemView;
 });

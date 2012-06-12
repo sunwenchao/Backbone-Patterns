@@ -9,7 +9,7 @@ define(function(require, exports, module) {
     };
 
     // 日程导航的视图
-    var CalendarNavwView = Backbone.View.extend({
+    var CalendarNavView = Backbone.View.extend({
 
         id : 'calendar_nav',
 
@@ -37,6 +37,6 @@ define(function(require, exports, module) {
         }
     });
 
-    exports.CalendarNavwView = CalendarNavwView;
+    exports.CalendarNavView = CalendarNavView;
     exports.navStatus = navStatus;
 });
