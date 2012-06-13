@@ -16,13 +16,15 @@ module.exports = function(app) {
     });
 
     // 获取单条数据
-    app.get('/calendars/:id', function(req, res) {
+    app.get('/calendars/:id', function(req, res, next) {
         if( req.xhr ){
             var reqId = req.params.id;
 
             calService.getCalById( reqId, function( err, replies ) {
                 res.send( replies );
             });
+        }else{
+            next();
         }
     });
 
