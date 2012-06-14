@@ -66,7 +66,14 @@ module.exports = function(app) {
     });
 
     // 处理非xhr请求 统一至页面
-    app.get(/\/calendars\/[\w]*/, function(req, res) {
+    app.get( /\/calendars\/[\w]*/, function( req, res ) {
+        if( !req.xhr ){
+            res.sendfile( './public/html/home.html' );
+        }
+    });
+
+    // 处理非xhr请求 统一至页面
+    app.get( /\/contact[\w]*/, function( req, res ) {
         if( !req.xhr ){
             res.sendfile( './public/html/home.html' );
         }

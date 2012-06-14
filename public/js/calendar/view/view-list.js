@@ -3,7 +3,7 @@
  */
 define(function(require, exports, module) {
 
-    var calendarCommon = require( './view-common' );
+    var calendarCommon = require( './view-common.js' );
 
     // 单条日程的视图
     var CalendarView = Backbone.View.extend({

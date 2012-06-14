@@ -5,9 +5,9 @@ define(function (require, exports, module) {
 
     var routerUtil = require( '../util/router-util' );
 
-    var calendarViews = require( './view' );
+    var calendarViews = require( './view/view.js' );
 
-    var calendarModels = require( './model' );
+    var calendarModels = require( './model/model.js' );
 
     var CalendarModel = calendarModels.Calendar;
 
