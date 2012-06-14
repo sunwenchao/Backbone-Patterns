@@ -1,62 +1,179 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+<head>
+    <meta charset="utf-8" />
+    <title>Backbone.js</title>
 
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <link href="impress-demo.css" rel="stylesheet" />
+    <link href="themes/tricolore.css" rel="stylesheet" type="text/css" media="screen">
+</head>
 
-    <title>Backbone-patterns by sunwenchao</title>
-  </head>
+<body class="impress-not-supported">
 
-  <body>
+<div id="impress">
 
-    <header>
-      <div class="container">
-        <h1>Backbone-patterns</h1>
-        <h2>旨在寻找backbone.js前端应用最佳实践，以日程列表为功能的demo项目</h2>
-
-        <section id="downloads">
-          <a href="https://github.com/sunwenchao/Backbone-Patterns/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/sunwenchao/Backbone-Patterns/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/sunwenchao/Backbone-Patterns" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h3>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
+<!-------------------------------------------------------------------------------- -->
+    <div id="bored" class="step slide" data-x="-1000" data-y="-1500">
+        <img src="img/word.png" width="780px"/>
+        <div class="author" style="float: right;margin-top: 60px;">
+            <span style="vertical-align: 35px;margin-right: 10px">Author : SunWenchao</span>
+            <img src="img/labi_100.png"/>
+        </div>
     </div>
 
-    
-  </body>
+    <div class="step slide" data-x="0" data-y="-1500">
+        <strong class="stitle">Our expect</strong>
+        <q>We want to build a
+            <b>Single-page,</b>
+            <b>Real-time,</b>
+            <b>Scalable,</b>
+            <b>Maintainable,</b>
+            <b>Clear-structure,</b>
+            <b>Rich-Javascript</b>
+            web application
+        </q>
+    </div>
+
+    <div class="step slide" data-x="1000" data-y="-1500">
+        <strong class="stitle">We don't like</strong>
+        <pre>
+        <code data-language="javascript">
+
+        function bindCaccle() {
+            var $bind = $('.bind-btn'),
+                $unbind = $('.unbind-btn');
+            $('.unbind-btn').click(function() {
+                L.ajax({
+                    type: "GET",
+                    url: '/removeFromLabi',
+                    success: function(result) {
+                        if(result.code == '9999' && result.data == 1) {
+                            $bind.css('display','inline-block');
+                            $unbind.hide();
+                        } else {
+                            alert('解绑失败，请重试！')
+                        }
+                    }
+                });
+            })
+        }
+        </code>
+        </pre>
+    </div>
+
+    <div class="step slide" data-x="2000" data-y="-1500">
+        <strong class="stitle">We like</strong>
+        <img src="img/mvc.png" width="780px" height="560px"/>
+    </div>
+<!-------------------------------------------------------------------------------- -->
+    <div id="title" class="step" data-x="0" data-y="0" data-scale="4">
+        <span class="try">then we should try</span>
+        <h1>Backbone.js</h1>
+        <span class="footnote">A Javascript <b>M V whatever</b> Library</span>
+    </div>
+<!-------------------------------------------------------------------------------- -->
+    <div class="step slide" data-x="-1000" data-y="1500">
+        <strong class="stitle">Why Backbone</strong>
+        <q>
+            <b>Popular</b> <span class="ssmall">- we are not lonely</span><br/>
+            <b>Tiny</b> <span class="ssmall">- we can handle it</span><br/>
+            <b>Flexible</b> <span class="ssmall">- we can use it as we want</span><br/>
+            <b>Comprehensive</b> <span class="ssmall">- has all necessary util for a SPA</span>
+        </q>
+    </div>
+
+    <div class="step slide" data-x="0" data-y="1500">
+        <strong class="stitle">what should we start ?</strong>
+        <q>
+            <b>Events</b> <span class="ssmall">- bind and trigger custom named events</span><br/>
+            <b>Model Collection Sync</b> <span class="ssmall">- interactive data</span><br/>
+            <b>View</b> <span class="ssmall">- organize your interface into logical views</span><br/>
+            <b>Router History</b> <span class="ssmall">- routing client-side pages</span>
+        </q>
+    </div>
+
+    <div class="step" data-x="-1000" data-y="5000" data-z="-3000" data-rotate="300" data-scale="1">
+        <p>small <b>module</b>, big <b>thought</b></p>
+        <p><b>Event-Driven</b></p>
+    </div>
+
+    <div class="step slide" data-x="1000" data-y="1500">
+        <strong class="stitle">Backbone Events</strong>
+        <pre>
+        <code data-language="javascript">
+
+            var object = {};
+
+            _.extend(object, Backbone.Events); // 增加事件功能
+
+            // A处
+            object.bind("alert", function(msg) {
+                alert("A:" + msg);
+            });
+
+            // B处
+            object.bind("alert", function(msg) {
+                alert("B:" + msg);
+            });
+
+            // K处
+            object.trigger("alert", "an event");
+
+            // how to realize ？
+        </code>
+        </pre>
+    </div>
+
+    <div class="step" data-x="0" data-y="5000" data-z="-3000" data-rotate="300" data-scale="1">
+        <p>Let's start <b>search</b> it !</p>
+    </div>
+
+    <div class="step slide" data-x="-1000" data-y="2400">
+        <strong class="stitle">Start from Html !</strong>
+        <pre>
+        <code data-language="javascript">
+        // Server We want single page
+        app.get( /\/calendars\/[\w]*/, function( req, res ) {
+            if( !req.xhr ) res.sendfile( './public/html/home.html' );
+        });
+
+        app.get( /\/contact[\w]*/, function( req, res ) {
+            if( !req.xhr ) res.sendfile( './public/html/home.html' );
+        });
+
+        // Client We want handle single page
+        seajs.use( '/js/home/router', function( homeRouter ){
+            homeRouter.init();
+        });
+        </code>
+        </pre>
+    </div>
+
+
+
+
+
+    <div id="big" class="step" data-x="3500" data-y="2100" data-rotate="180" data-scale="6">
+        <p>visualize your <b>big</b> <span class="thoughts">thoughts</span></p>
+    </div>
+
+
+
+    <div id="its-in-3d" class="step" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+        <p><span class="have">have</span> <span class="you">you</span> <span class="noticed">noticed</span> <span class="its">it's</span> <span class="in">in</span> <b>3D<sup>*</sup></b>?</p>
+        <span class="footnote">* beat that, prezi ;)</span>
+    </div>
+
+    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+    </div>
+
+</div>
+
+<script src="impress.js"></script>
+<script>impress().init();</script>
+
+<script src="rainbow.js"></script>
+<script src="generic.js"></script>
+<script src="javascript.js"></script>
+</body>
 </html>
