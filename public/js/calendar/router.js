@@ -1,5 +1,6 @@
 /**
  * 日历的Router
+ * 此模块同时依赖了所有日历相关文件 统一打包处理
  */
 define(function (require, exports, module) {
 

@@ -679,3 +679,8 @@ a:focus {
     font-size: 26px;
     color: #ccc;
 }
+.tips{
+    margin-top: 20px;
+    line-height: 1.5;
+    padding-left: 25px;
+}

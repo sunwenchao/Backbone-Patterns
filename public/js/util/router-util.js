@@ -1,6 +1,7 @@
 /**
  *  @fileOverview : Router模块相关的工具方法
  *  @author : Sunwenchao
+ *  @version : 0.1.0
  */
 define(function (require, exports, module) {
 
@@ -61,6 +62,7 @@ define(function (require, exports, module) {
         });
     };
 
+    // 对外的接口 API
     exports.createRouterHandlers = createRouterHandlers;
     exports.handleFragment = handleFragment;
 
