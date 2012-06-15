@@ -14,10 +14,12 @@ define(function(require, exports, module) {
         template : Handlebars.compile( $( '#calendar_one_template' ).html() ),
 
         events : {
+            // 单条删除按钮
             'click .close' : function() {
                 this.model.deleteCal();
             },
 
+            // 双击跳至某条的视图
             'dblclick' : function() {
                 homeRouter.navigate( 'calendars/item/' + this.model.get( '_id' ), { trigger : true } );
             }
@@ -34,6 +36,7 @@ define(function(require, exports, module) {
             return this;
         },
 
+        // 模型销毁后 删除DOM
         removeSelf : function() {
             $( this.el ).remove();
         }
@@ -47,6 +50,7 @@ define(function(require, exports, module) {
         template : Handlebars.compile( $( '#calendar_list_template' ).html() ),
 
         events : {
+            // 测试按钮
             'click #calendar_view_addbtn' : function () {
                 this.collection.addCal();
             }
@@ -62,6 +66,7 @@ define(function(require, exports, module) {
             this.collection.bind( 'add', this.renderItem );
         },
 
+        // 集合重置时 全部内容重新渲染
         renderAll : function() {
             var self = this;
 
@@ -72,6 +77,7 @@ define(function(require, exports, module) {
             });
         },
 
+        // 初始化页面DOM
         initRender : function() {
 
             var navView = new calendarCommon.CalendarNavView(),
@@ -86,6 +92,7 @@ define(function(require, exports, module) {
             this.renderAll();
         },
 
+        // 添加单条视图
         renderItem : function( item ) {
 
             var itemView = new CalendarView({
@@ -96,5 +103,4 @@ define(function(require, exports, module) {
     });
 
     exports.CalendarListView = CalendarListView;
-
 });

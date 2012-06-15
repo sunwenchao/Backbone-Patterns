@@ -13,7 +13,7 @@ define(function(require, exports, module) {
         template : Handlebars.compile( $( '#calendar_new_template' ).html() ),
 
         events : {
-
+            // 验证合法输入的效果
             'keyup #new_title' : function( e ) {
                 if ( this.model.validateTitle( $( e.target ).val() ) ){
                     $( '#new_title_con' ).removeClass( 'error' ).addClass( 'success' );
@@ -30,6 +30,7 @@ define(function(require, exports, module) {
                 }
             },
 
+            // 新建按钮
             'click #new_save' : function() {
                 var result = this.model.set({
                     title : $( '#new_title' ).val(),
@@ -39,6 +40,7 @@ define(function(require, exports, module) {
                 if( result ) this.model.save();
             },
 
+            // 取消按钮 回退上一页
             'click #new_cancel' : function() {
                 history.back();
             }
@@ -51,6 +53,7 @@ define(function(require, exports, module) {
             this.initNewModel();
         },
 
+        // 初始化页面DOM
         initNewView : function() {
 
             var navView = new calendarCommon.CalendarNavView(),
@@ -63,11 +66,12 @@ define(function(require, exports, module) {
             containerDom.append( this.$el );
         },
 
+        // 初始化数据
         initNewModel : function() {
-
             this.model.bind( 'sync', this.syncComplete );
         },
 
+        // 新建成功的回调
         syncComplete : function( model ) {
 
             this.collection.add( model );
@@ -86,6 +90,8 @@ define(function(require, exports, module) {
         template : Handlebars.compile( $( '#calendar_item_template' ).html() ),
 
         events : {
+
+            // 保存编辑内容
             'click #item_save' : function() {
                 var result = this.model.set({
                     title : $( '#item_title' ).val(),
@@ -95,6 +101,7 @@ define(function(require, exports, module) {
                 if( result ) this.model.save();
             },
 
+            // 取消按钮 回退上一页
             'click #item_cancel' : function() {
                 history.back();
             }
@@ -108,12 +115,14 @@ define(function(require, exports, module) {
 
             this.initNewView();
 
+            // 判断当前请求模型数据是否已加载
             if( this.model.isNew() ) {
                 this.model.id = this.model.get( 'id' );
                 this.model.fetch();
             }
         },
 
+        // 初始化页面DOM
         initNewView : function() {
 
             var navView = new calendarCommon.CalendarNavView(),
@@ -128,6 +137,7 @@ define(function(require, exports, module) {
             return $( this.el ).html( this.template( this.model.toJSON() ) );
         },
 
+        // 保存后回调
         syncComplete : function() {
             _.defer( function() {
                 homeRouter.navigate( 'calendars', { trigger : true } );

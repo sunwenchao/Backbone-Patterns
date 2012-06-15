@@ -15,12 +15,14 @@ define(function (require, exports, module) {
     // 日历模块的路由列表
     var calendarRouterHandler = routerUtil.createRouterHandlers({
 
+        // 全部日程列表
         '/' : function() {
             new calendarViews.CalendarListView({
                 collection : calendarModels.getCalendarCollection()
             });
         },
 
+        // 新建日程
         '/new' : function() {
             new calendarViews.CalendarNewView({
                 collection : calendarModels.getCalendarCollection(),
@@ -28,6 +30,7 @@ define(function (require, exports, module) {
             });
         },
 
+        // 单条日程编辑
         '/item/:id' : function( id ) {
             new calendarViews.CalendarItemView({
                 model : calendarModels.getCalendarById( id )
