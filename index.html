@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Backbone.js</title>
-
+    <title>Backbone by Sun</title>
+    <link type="image/x-icon" href="img/labi.ico" rel="icon"/>
     <link href="impress-demo.css" rel="stylesheet" />
     <link href="themes/tricolore.css" rel="stylesheet" type="text/css" media="screen">
 </head>
@@ -125,13 +125,47 @@
     </div>
 
     <div class="step" data-x="0" data-y="5000" data-z="-3000" data-rotate="300" data-scale="1">
-        <p>Let's start <b>search</b> it !</p>
+        <p>small <b>module</b>, big <b>thought</b></p>
+        <p><b>Extend it</b> to <b>Use it</b> !</p>
+    </div>
+
+    <div class="step slide" data-x="2000" data-y="1500">
+        <strong class="stitle">Create a Backbone Class</strong>
+            <pre>
+            <code data-language="javascript">
+
+            // jQuery
+            document.getElementById( 'abc' )
+            $( '#abc' )
+
+
+            // Backbone  var aaa = new Backbone.Model(); ???
+            // We need a variety of models
+            var Calendar = Backbone.Model.extend({
+
+                changeDate : function(){
+                    //ooxx
+                }
+            });
+
+            // create a instance
+            var aCal = new Calendar();
+            </code>
+            </pre>
+    </div>
+
+<!-------------------------------------------------------------------------------- -->
+
+    <div class="step" data-x="1000" data-y="5000" data-z="-3000" data-rotate="300" data-scale="1">
+        <p>Let's start <b>search</b> it in <b>real world <br/>( Labi 2.0 )</b> !</p>
     </div>
 
     <div class="step slide" data-x="-1000" data-y="2400">
-        <strong class="stitle">Start from Html !</strong>
+        <strong class="stitle">Single Page App</strong>
         <pre>
         <code data-language="javascript">
+
+
         // Server We want single page
         app.get( /\/calendars\/[\w]*/, function( req, res ) {
             if( !req.xhr ) res.sendfile( './public/html/home.html' );
@@ -145,21 +179,173 @@
         seajs.use( '/js/home/router', function( homeRouter ){
             homeRouter.init();
         });
+
+        // 管理浏览器历史
+        // 提供每个视图可访问的单独 URL
         </code>
         </pre>
     </div>
 
+    <div class="step slide" data-x="0" data-y="2400">
+        <strong class="stitle">Manage Route</strong>
+        <div class="tips">
+            <b>pushState, replaceState</b><br/>
+            <b># hash</b>
+        </div>
+        <pre>
+        <code data-language="javascript">
+            // home/router ---- init ----- www.labi.com/ooxx
+            $(function(){
+                Backbone.history.start( { pushState : true, root : "/" } );
+            });
+
+            // 唯一的路由表太混乱 且不利于统一管理
+            'calendars*path' : 'calendarCommon'
+
+            calendarCommon : function( path ){
+                // 日历模块的统一处理 分配给子路由进行匹配执行
+                require.async( '../calendar/router', function( calendarRouter ) {
+                    calendarRouter.routeURL( path );
+                });
+            }
+
+            // Router-Util ^_^
+        </code>
+        </pre>
+    </div>
+
+    <div class="step slide" data-x="1000" data-y="2400">
+        <strong class="stitle">Module Router</strong>
+        <pre>
+        <code data-language="javascript">
+            // :id
+            // *ppp
+            // query
+
+            '/' : function() {
+                new calendarViews.CalendarListView({
+                    collection : calendarModels.getCalendarCollection()
+                });
+            },
+            '/new' : function() {
+                new calendarViews.CalendarNewView({
+                    collection : calendarModels.getCalendarCollection(),
+                    model : new CalendarModel()
+                });
+            },
+            '/item/:id' : function( id, query ) {
+                new calendarViews.CalendarItemView({
+                    model : calendarModels.getCalendarById( id )
+                });
+            }
+        </code>
+        </pre>
+    </div>
+
+    <div class="step" data-x="2000" data-y="5000" data-z="-3000" data-rotate="300" data-scale="1">
+        <p>See the <b>Simple View</b> !</p>
+    </div>
+
+    <div class="step slide" data-x="3400" data-y="-1500">
+        <strong class="stitle">Simple View</strong>
+        <pre>
+        <code data-language="javascript">
+        // Backbone View
+        // updated independently when the model changes
+        var CalendarItemView = Backbone.View.extend({
+
+            id : 'calendar_item',
+
+            template : Handlebars.compile( $( '#calendar_item' ).html() ),
+
+            events : {
+                'click #item_cancel' : function() {
+                    history.back();
+                }
+            },
+            initialize : function() {
+                this.model.bind( 'change', this.render );
+                this.render();
+            },
+            render : function() {
+                $( this.el ).html( this.template( this.model.toJSON() ) );
+            }
+        });
+        </code>
+        </pre>
+    </div>
+
+    <div class="step" data-x="3000" data-y="5000" data-z="-3000" data-rotate="300" data-scale="1">
+        <p>
+            <b>View</b> need <b>Model</b> ! <br/>
+            <b>Core Module</b>
+        </p>
+    </div>
+
+    <div class="step slide" data-x="4400" data-y="-1500">
+        <strong class="stitle">Simple Model</strong>
+        <pre>
+        <code data-language="javascript">
+        // Backbone Model
+        // interactive data and send message
+        var Calendar = Backbone.Model.extend({
+
+            urlRoot : '/calendars',
+
+            defaults : {
+                'company' : 'gozap'
+            },
+
+            deleteCal : function() {
+                this.destroy();
+            }
+        });
+        </code>
+        </pre>
+    </div>
+
+    <div class="step" data-x="4000" data-y="5000" data-z="-3000" data-rotate="300" data-scale="1">
+        <p>
+            <b>Server Data ?</b><br/>
+            <b>REST !!!</b>
+        </p>
+    </div>
+
+    <div class="step slide" data-x="4400" data-y="-1500">
+        <strong class="stitle">REST</strong>
+            <pre>
+            <code data-language="javascript">
+                // Sever
+
+                // 获取单条数据
+                app.get('/calendars/:id', function(req, res, next)
+                // 编辑单条数据
+                app.put('/calendars/:id', function(req, res)
+                // 删除单条数据
+                app.del('/calendars/:id', function(req, res)
+                // 添加单条数据
+                app.post('/calendars', function(req, res)
 
 
+                // Client Backbone Sync
+                // overwrite LocalCache
+
+                // create → POST          /collection
+                // read → GET             /collection[/id]
+                // update → PUT           /collection/id
+                // delete → DELETE        /collection/id
+            </code>
+            </pre>
+    </div>
 
 
-    <div id="big" class="step" data-x="3500" data-y="2100" data-rotate="180" data-scale="6">
+    <div id="big" class="step" data-x="3500" data-y="8100" data-rotate="180" data-scale="6">
         <p>visualize your <b>big</b> <span class="thoughts">thoughts</span></p>
     </div>
 
 
 
-    <div id="its-in-3d" class="step" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+    <div id="its-in-3d" class="step" data-x="6200" data-y="8300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
         <p><span class="have">have</span> <span class="you">you</span> <span class="noticed">noticed</span> <span class="its">it's</span> <span class="in">in</span> <b>3D<sup>*</sup></b>?</p>
         <span class="footnote">* beat that, prezi ;)</span>
     </div>
