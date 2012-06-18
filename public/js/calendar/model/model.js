@@ -49,6 +49,15 @@ define(function (require, exports, module) {
 
         // 增加一条日程
         addCal : function( oriObj, opts ) {
+
+            if( !oriObj ) {
+                oriObj = {
+                    title : '测试标题',
+                    content : '我是测试内容，我是测试内容，我是测试内容，我是测试内容，我是测试内容，我是测试内容，' +
+                        '我是测试内容，我是测试内容，我是测试内容，我是测试内容，我是测试内容。'
+                };
+            }
+
             opts.wait = true;
 
             return this.create( oriObj, opts );

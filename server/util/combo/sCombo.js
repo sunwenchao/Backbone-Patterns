@@ -1,6 +1,7 @@
 var sCombo = (function( undefined ) {
 
     var fs = require('fs'),
+        path = require('path'),
         compressor = require('./node-minify.js');
 
 
@@ -20,7 +21,7 @@ var sCombo = (function( undefined ) {
             desFiles = this.desFiles,
             qType = this.qType;
 
-        fs.exists( desFiles, function( exists ){
+        path.exists( desFiles, function( exists ){
 
             for( var i = 0, len = oriFiles.length; i < len; i++ ){
                 oriFiles[ i ] = global.sBasePath + '/public/' + qType + '/' + oriFiles[ i ];

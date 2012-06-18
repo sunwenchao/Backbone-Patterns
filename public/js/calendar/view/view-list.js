@@ -50,9 +50,9 @@ define(function(require, exports, module) {
         template : Handlebars.compile( $( '#calendar_list_template' ).html() ),
 
         events : {
-            // 测试按钮
-            'click #calendar_view_addbtn' : function () {
-                this.collection.addCal();
+            // 添加测试数据
+            'click #add_test' : function() {
+                this.collection.addCal( false, {} );
             }
         },
 
