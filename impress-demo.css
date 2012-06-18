@@ -260,14 +260,13 @@ a:focus {
 #big {
     width: 600px;
     text-align: center;
-    font-size: 60px;
+    font-size: 40px;
     line-height: 1;
 }
 
 #big b {
-    display: block;
-    font-size: 250px;
-    line-height: 250px;
+    font-size: 80px;
+    line-height: 1.5;
 }
 
 #big .thoughts {
@@ -683,4 +682,18 @@ a:focus {
     margin-top: 20px;
     line-height: 1.5;
     padding-left: 25px;
+}
+.sbig{
+    text-align: center;
+    font-size: 40px;
+}
+.sbig b{
+    font-weight: bold;
+    font-size: 200px;
+}
+.sbig2{
+    text-align: center;
+    font-size: 120px;
+    color: #ff4500;
+    font-weight: bold;
 }
