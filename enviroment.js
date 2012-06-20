@@ -40,5 +40,5 @@ module.exports = function(app, express) {
 
     // project 'S' infomation
     global.sBasePath = __dirname;
-    global.sDebug = false;
+    global.sDebug = true;
 };

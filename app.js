@@ -4,4 +4,4 @@ var app = express.createServer();
 require('./enviroment.js')(app, express);
 require('./server/config/routes.js')(app);
 
-app.listen(8888);
+app.listen( process.env.VCAP_APP_PORT || 8888 );

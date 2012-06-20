@@ -4,8 +4,8 @@
  */
 define(function(require, exports, module) {
 
-    var view_list = require( './view-list.js' );
-    var view_item = require( './view-item.js' );
+    var view_list = require( './view-list' );
+    var view_item = require( './view-item' );
 
     exports.CalendarListView = view_list.CalendarListView;
     exports.CalendarNewView = view_item.CalendarNewView;
