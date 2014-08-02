@@ -1,460 +1,79 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <title>Backbone by Sun</title>
-    <link type="image/x-icon" href="img/labi.ico" rel="icon"/>
-    <link href="impress-demo.css" rel="stylesheet" />
-    <link href="themes/tricolore.css" rel="stylesheet" type="text/css" media="screen">
-</head>
 
-<body class="impress-not-supported">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Backbone-patterns : 旨在寻找backbone.js前端应用最佳实践，以日程列表为功能的demo项目">
 
-<div id="impress">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-<!-------------------------------------------------------------------------------- -->
-    <div id="bored" class="step slide" data-x="-1000" data-y="-1500">
-        <img src="img/word.png" width="780px"/>
-        <div class="author" style="float: right;margin-top: 60px;">
-            <span style="vertical-align: 35px;margin-right: 10px">Author : SunWenchao</span>
-            <img src="img/labi_100.png"/>
-        </div>
+    <title>Backbone-patterns</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/sunwenchao/Backbone-Patterns">View on GitHub</a>
+
+          <h1 id="project_title">Backbone-patterns</h1>
+          <h2 id="project_tagline">旨在寻找backbone.js前端应用最佳实践，以日程列表为功能的demo项目</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/sunwenchao/Backbone-Patterns/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/sunwenchao/Backbone-Patterns/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
     </div>
 
-    <div class="step slide" data-x="0" data-y="-1500">
-        <strong class="stitle">Our expect (from server to client)</strong>
-        <q>We want to build a
-            <b>Single-page,</b>
-            <b>Real-time,</b>
-            <b>Scalable,</b>
-            <b>Maintainable,</b>
-            <b>Clear-structure,</b>
-            <b>Rich-Javascript</b>
-            web application
-        </q>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+
+<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+
+<pre><code>$ cd your_repo_root/repo_name
+$ git fetch origin
+$ git checkout gh-pages
+</code></pre>
+
+<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+
+<h3>
+<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+
+<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+
+<h3>
+<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+
+<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+
+<h3>
+<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+
+<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+      </section>
     </div>
 
-    <div class="step slide" data-x="1000" data-y="-1500">
-        <strong class="stitle">We don't like</strong>
-        <pre>
-        <code data-language="javascript">
-
-        function bindCaccle() {
-            var $bind = $('.bind-btn'),
-                $unbind = $('.unbind-btn');
-
-            $('.unbind-btn').click(function() {
-                L.ajax({
-                    type: "GET",
-                    url: '/removeFromLabi',
-                    success: function(result) {
-                        if(result.code == '9999' && result.data == 1) {
-                            $bind.css('display','inline-block');
-                            $unbind.hide();
-                        } else {
-                            alert('解绑失败，请重试！')
-                        }
-                    }
-                });
-            })
-        }
-        </code>
-        </pre>
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Backbone-patterns maintained by <a href="https://github.com/sunwenchao">sunwenchao</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
     </div>
 
-    <div class="step slide" data-x="2000" data-y="-1500">
-        <strong class="stitle">We like</strong>
-        <img src="img/mvc.png" width="780px" height="560px"/>
-    </div>
-<!-------------------------------------------------------------------------------- -->
-    <div id="title" class="step" data-x="0" data-y="0" data-scale="4">
-        <span class="try">then we should try</span>
-        <h1>Backbone.js</h1>
-        <span class="footnote">A Javascript <b>M V whatever</b> Library</span>
-    </div>
-<!-------------------------------------------------------------------------------- -->
-    <div class="step slide" data-x="-1000" data-y="1500">
-        <strong class="stitle">Why Backbone</strong>
-        <q>
-            <b>Popular</b> <span class="ssmall">- we are not lonely</span><br/>
-            <b>Tiny</b> <span class="ssmall">- we can handle it</span><br/>
-            <b>Flexible</b> <span class="ssmall">- we can use it as we want</span><br/>
-            <b>Comprehensive</b> <span class="ssmall">- has all necessary util for a SPA</span>
-        </q>
-    </div>
+    
 
-    <div class="step slide" data-x="0" data-y="1500">
-        <strong class="stitle">what should we start ?</strong>
-        <q>
-            <b>Events</b> <span class="ssmall">- bind and trigger custom named events</span><br/>
-            <b>Model Collection Sync</b> <span class="ssmall">- interactive data</span><br/>
-            <b>View</b> <span class="ssmall">- organize your interface into logical views</span><br/>
-            <b>Router History</b> <span class="ssmall">- routing client-side pages</span>
-        </q>
-    </div>
-
-    <div class="step" data-x="-1000" data-y="5000" data-z="-3000" data-rotate="300" data-scale="1">
-        <p>small <b>module</b>, big <b>thought</b></p>
-        <p><b>Event-Driven</b></p>
-    </div>
-
-    <div class="step slide" data-x="1000" data-y="1500">
-        <strong class="stitle">Backbone Events</strong>
-        <pre>
-        <code data-language="javascript">
-
-            var object = {};
-
-            _.extend(object, Backbone.Events); // 增加事件功能
-
-            // A处
-            object.bind("alert", function(msg) {
-                alert("A:" + msg);
-            });
-
-            // B处
-            object.bind("alert", function(msg) {
-                alert("B:" + msg);
-            });
-
-            // K处
-            object.trigger("alert", "an event");
-
-            // how to realize ？
-        </code>
-        </pre>
-    </div>
-
-    <div class="step" data-x="0" data-y="5000" data-z="-3000" data-rotate="300" data-scale="1">
-        <p>small <b>module</b>, big <b>thought</b></p>
-        <p><b>Extend it</b> to <b>Use it</b> !</p>
-    </div>
-
-    <div class="step slide" data-x="2000" data-y="1500">
-        <strong class="stitle">Create a Backbone Class</strong>
-            <pre>
-            <code data-language="javascript">
-
-            // jQuery
-            var abc = document.getElementById( 'abc' );
-            var $abc =  $( abc );
-
-
-            // Backbone  var aaa = new Backbone.Model(); ???
-            // We need a variety of models
-            var Calendar = Backbone.Model.extend({
-
-                changeDate : function(){
-                    //ooxx
-                }
-            });
-
-            // create a instance
-            var aCal = new Calendar();
-            </code>
-            </pre>
-    </div>
-
-<!-------------------------------------------------------------------------------- -->
-
-    <div class="step" data-x="1000" data-y="5000" data-z="-3000" data-rotate="0" data-scale="1">
-        <p>Let's start <b>search</b> it in <b>real world <br/>( Labi 2.0 )</b> !</p>
-    </div>
-
-    <div class="step slide" data-x="-1000" data-y="2400">
-        <strong class="stitle">Single Page App</strong>
-        <pre>
-        <code data-language="javascript">
-
-
-        // Server We want single page
-        app.get( /\/calendars\/[\w]*/, function( req, res ) {
-            if( !req.xhr ) res.sendfile( './public/html/home.html' );
-        });
-
-        app.get( /\/contact[\w]*/, function( req, res ) {
-            if( !req.xhr ) res.sendfile( './public/html/home.html' );
-        });
-
-        // Client We want handle single page
-        seajs.use( '/js/home/router', function( homeRouter ){
-            homeRouter.init();
-        });
-
-        // 管理浏览器历史
-        // 提供每个视图可访问的单独 URL
-        </code>
-        </pre>
-    </div>
-
-    <div class="step slide" data-x="0" data-y="2400">
-        <strong class="stitle">Manage Route</strong>
-        <div class="tips">
-            <b>pushState, replaceState</b><br/>
-            <b># hash</b>
-        </div>
-        <pre>
-        <code data-language="javascript">
-            // home/router ---- init ----- www.labi.com/ooxx
-            $(function(){
-                Backbone.history.start( { pushState : true, root : "/" } );
-            });
-
-            // 唯一的路由表太混乱 且不利于统一管理
-            'calendars*path' : 'calendarCommon'
-
-            calendarCommon : function( path ){
-                // 日历模块的统一处理 分配给子路由进行匹配执行
-                require.async( '../calendar/router', function( calendarRouter ) {
-                    calendarRouter.routeURL( path );
-                });
-            }
-
-            // Router-Util ^_^
-        </code>
-        </pre>
-    </div>
-
-    <div class="step slide" data-x="1000" data-y="2400">
-        <strong class="stitle">Module Router</strong>
-        <pre>
-        <code data-language="javascript">
-            // :id
-            // *ppp
-            // query
-
-            '/' : function() {
-                new calendarViews.CalendarListView({
-                    collection : calendarModels.getCalendarCollection()
-                });
-            },
-            '/new' : function() {
-                new calendarViews.CalendarNewView({
-                    collection : calendarModels.getCalendarCollection(),
-                    model : new CalendarModel()
-                });
-            },
-            '/item/:id' : function( id, query ) {
-                new calendarViews.CalendarItemView({
-                    model : calendarModels.getCalendarById( id )
-                });
-            }
-        </code>
-        </pre>
-    </div>
-
-    <div class="step" data-x="2000" data-y="5000" data-z="-3000" data-rotate="0" data-scale="1">
-        <p>See the <b>Simple View</b> !</p>
-    </div>
-
-    <div class="step slide" data-x="3400" data-y="-1500">
-        <strong class="stitle">Simple View</strong>
-        <pre>
-        <code data-language="javascript">
-        // Backbone View
-        // updated independently when the model changes
-        var CalendarItemView = Backbone.View.extend({
-
-            id : 'calendar_item',
-
-            template : Handlebars.compile( $( '#calendar_item' ).html() ),
-
-            events : {
-                'click #item_cancel' : function() {
-                    history.back();
-                }
-            },
-            initialize : function() {
-                this.model.bind( 'change', this.render );
-                this.render();
-            },
-            render : function() {
-                $( this.el ).html( this.template( this.model.toJSON() ) );
-            }
-        });
-        </code>
-        </pre>
-    </div>
-
-    <div class="step" data-x="3000" data-y="5000" data-z="-3000" data-rotate="180" data-scale="1">
-        <p>
-            <b>View</b> need <b>Model</b> ! <br/>
-            <b>Core Module</b>
-        </p>
-    </div>
-
-    <div class="step slide" data-x="4400" data-y="-1500">
-        <strong class="stitle">Core Model</strong>
-        <pre>
-        <code data-language="javascript">
-        // Backbone Model
-        // interactive data and send message
-        // id
-        // model.attributes
-        // model.set/get
-
-        var Calendar = Backbone.Model.extend({
-
-            urlRoot : '/calendars',
-
-            defaults : {
-                'company' : 'gozap'
-            },
-
-            deleteCal : function() {
-                this.destroy();
-            }
-        });
-        </code>
-        </pre>
-    </div>
-
-    <div class="step" data-x="4000" data-y="5000" data-z="-3000" data-rotate="0" data-scale="1">
-        <p>
-            <b>Server Data ?</b><br/>
-            <b>REST !!!</b>
-        </p>
-    </div>
-
-    <div class="step slide" data-x="5400" data-y="-1500">
-        <strong class="stitle">REST</strong>
-            <pre>
-            <code data-language="javascript">
-                // Sever
-
-                // 获取单条数据
-                app.get('/calendars/:id', function(req, res, next)
-                // 编辑单条数据
-                app.put('/calendars/:id', function(req, res)
-                // 删除单条数据
-                app.del('/calendars/:id', function(req, res)
-                // 添加单条数据
-                app.post('/calendars', function(req, res)
-
-
-                // Client Backbone Sync
-                // overwrite LocalCache
-
-                // create → POST          /collection
-                // read → GET             /collection[/id]
-                // update → PUT           /collection/id
-                // delete → DELETE        /collection/id
-            </code>
-            </pre>
-    </div>
-
-    <div class="step slide" data-x="3400" data-y="-600">
-        <strong class="stitle">Model Event</strong>
-        <pre>
-        <code data-language="javascript">
-
-
-            model.set( 'title', 'hahaha' ) // change change:title error
-
-            model.get( 'title' )
-
-            model.escape( 'title' )
-
-            model.unset( 'title' )  // change
-
-            model.clear() // change
-
-            model.fetch() // change
-
-            model.save() // change sync error
-
-            model.destory() // destroy sync
-
-        </code>
-        </pre>
-    </div>
-
-    <div class="step slide" data-x="4400" data-y="-600">
-        <strong class="stitle">Collection - ordered sets of models</strong>
-        <pre>
-        <code data-language="javascript">
-            var CalendarCollection = Backbone.Collection.extend({
-
-                model : Calendar,
-
-                url : function() {
-                    return '/calendars?ts=' + Number( new Date() );
-                },
-
-                initialize : function() {
-                    this.fetch();
-                },
-
-                addCal : function( oriObj, opts ) {
-                    opts.wait = true;
-                    return this.create( oriObj, opts );
-                },
-
-                comparator : function( calendar ) {
-                    return -calendar.get( 'updatetime' );
-                }
-            });
-        </code>
-        </pre>
-    </div>
-
-    <div class="step slide" data-x="5400" data-y="-600">
-        <strong class="stitle">Collection - Api</strong>
-        <pre>
-        <code data-language="javascript">
-
-            // Underscore Methods
-
-            col.add( model ) // add -- obj or model
-
-            col.remove( model ) // remove
-
-            col.get( id ) .getByCid( cid ) .at( index )
-
-            col.push .unshift .pop .shift
-
-            col.sort // reset
-
-            col.fetch // reset or add
-
-            col.create // add sync
-
-        </code>
-        </pre>
-    </div>
-
-    <div class="step" data-x="5000" data-y="2100" data-rotate="0" data-scale="4">
-        <img src="img/art.png" width="800px" height="450px">
-    </div>
-
-
-    <div id="big" class="step" data-x="6000" data-y="4500" data-rotate="0" data-scale="4">
-        <p><b>Control it !</b> <br/>
-            Use it Reasonable ~
-        </p>
-    </div>
-
-    <div class="step sbig" data-x="3400" data-y="300" data-rotate="0" data-scale="2">
-        <p><b>Q & A</b> <br/>
-            about library about use it
-        </p>
-    </div>
-
-    <div class="step sbig2" data-x="5400" data-y="300" data-rotate="0" data-scale="2">
-        <p><b>Thank You !</b> <br/>
-        </p>
-    </div>
-
-    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
-    </div>
-
-</div>
-
-<script src="impress.js"></script>
-<script>impress().init();</script>
-
-<script src="rainbow.js"></script>
-<script src="generic.js"></script>
-<script src="javascript.js"></script>
-</body>
+  </body>
 </html>
